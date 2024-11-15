@@ -34,44 +34,15 @@
 
   <!-- Hero Section -->
 <header class="hero">
+    <div class="hero-content">
+        <h1>اكتشف عالم الانمي</h1>
+        <p>شاهد أحدث وأفضل مسلسلات الانمي مترجمة بجودة عالية</p>
+    </div>
+
     <div class="anime-slider" id="animeSlider">
-        <!-- الصور والنصوص سيتم تحميلها هنا باستخدام JavaScript -->
+        <!-- الصور سيتم تحميلها هنا باستخدام JavaScript -->
     </div>
 </header>
-
-<script>
-    // تحميل بيانات الصور والنصوص من slider.json
-    fetch('slider.json')
-        .then(response => response.json())
-        .then(slides => {
-            const slider = document.getElementById('animeSlider');
-            
-            // إنشاء رابط وصورة ونص لكل عنصر في البيانات
-            slides.forEach(slide => {
-                const slideElement = document.createElement('a');
-                slideElement.href = slide.link;  // الرابط إلى صفحة الأنمي
-                slideElement.classList.add('anime-slide');
-
-                // إنشاء الصورة
-                const imageElement = document.createElement('img');
-                imageElement.src = slide.image;  // الرابط إلى صورة الأنمي
-                imageElement.alt = slide.name;  // النص البديل للصورة
-                imageElement.classList.add('anime-image');
-
-                // إنشاء النص الذي يظهر على الصورة
-                const textOverlay = document.createElement('div');
-                textOverlay.classList.add('text-overlay');
-                textOverlay.innerHTML = `<p>${slide.text}</p>`;  // النص الموجود في JSON
-
-                // إضافة النص والصورة إلى العنصر
-                slideElement.appendChild(imageElement);
-                slideElement.appendChild(textOverlay);
-                slider.appendChild(slideElement);
-            });
-        })
-        .catch(error => console.error('خطأ في تحميل بيانات الـ slider:', error));
-</script>
-
 
 <script>
     // تحميل بيانات الصور من slider.json
@@ -91,13 +62,17 @@
                 imageElement.alt = slide.name;  // النص البديل للصورة
                 imageElement.classList.add('anime-image');
 
+                const textOverlay = document.createElement('div');
+                textOverlay.classList.add('text-overlay');
+                textOverlay.textContent = slide.text;  // النص الذي يظهر فوق الصورة
+
                 slideElement.appendChild(imageElement);
+                slideElement.appendChild(textOverlay);  // إضافة النص فوق الصورة
                 slider.appendChild(slideElement);
             });
         })
         .catch(error => console.error('خطأ في تحميل بيانات الـ slider:', error));
 </script>
-
 
 
   <!-- بدايت مميز حلقات  -->
