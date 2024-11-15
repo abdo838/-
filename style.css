@@ -121,9 +121,11 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 70vh; /* تكبير حجم الـ Hero Section ليشمل الصور الكبيرة */
+    height: 70vh; /* حجم الـ Hero Section */
     overflow: hidden;
+    margin-top: 60px; /* المسافة بين الـ navbar والـ Hero Section */
 }
+
 
 .anime-slideshow-container {
     position: relative;
