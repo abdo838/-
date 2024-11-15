@@ -47,9 +47,11 @@
 
   <!-- بدايت مميز حلقات  -->
     <main>
+    
+            <div class="section-header">
                 <h2>مميز</h2>
-                <div class="pages-list"></div>
-
+            </div>
+  <!-- بدايت مميز حلقات  -->
             <div class="anime-grid" id="animeGrid"></div>
             <script>
                 // تحميل قائمة الصفحات من JSON
@@ -85,9 +87,9 @@
                     })
                     .catch(error => console.error('خطأ في تحميل الصفحات:', error));
             </script>
+   <!-- النهايه مميز حلقات  -->
+
     </main>
-       <!-- النهايه مميز حلقات  -->
-        
      <!-- بدايت تبدل الوضع -->
     <script>
         const themeToggle = document.getElementById('themeToggle');
@@ -99,7 +101,9 @@
 
    <!-- بدايت احدث حلقات  -->
    <main>
-    <h2> احدث حلقات   </h2>
+    <div class="section-header">
+        <h2> احدث حلقات   </h2>
+    </div>
     <div class="pages-list"></div>
    </main>
    <div class="anime-grid" id="animeGrid"></div>
