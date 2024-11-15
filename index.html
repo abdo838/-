@@ -32,15 +32,22 @@
         </div>
     </nav>
 
-  <!-- Hero Section -->
+ <!-- Hero Section -->
 <header class="hero">
     <div class="hero-content">
         <h1>اكتشف عالم الانمي</h1>
         <p>شاهد أحدث وأفضل مسلسلات الانمي مترجمة بجودة عالية</p>
     </div>
 
-    <div class="anime-slider" id="animeSlider">
-        <!-- الصور سيتم تحميلها هنا باستخدام JavaScript -->
+    <div class="anime-slideshow-container">
+        <!-- زر التالي والسابق -->
+        <button class="prev" id="prevBtn">&#10094;</button>
+        
+        <div class="anime-slideshow" id="animeSlideshow">
+            <!-- الصور سيتم تحميلها هنا باستخدام JavaScript -->
+        </div>
+
+        <button class="next" id="nextBtn">&#10095;</button>
     </div>
 </header>
 
@@ -49,13 +56,14 @@
     fetch('slider.json')
         .then(response => response.json())
         .then(slides => {
-            const slider = document.getElementById('animeSlider');
-            
-            // إنشاء رابط وصورة لكل عنصر في البيانات
+            const slideshow = document.getElementById('animeSlideshow');
+            let currentSlide = 0;
+
+            // إضافة الصور والنصوص
             slides.forEach(slide => {
-                const slideElement = document.createElement('a');
-                slideElement.href = slide.link;  // الرابط إلى صفحة الأنمي
+                const slideElement = document.createElement('div');
                 slideElement.classList.add('anime-slide');
+                slideElement.style.display = 'none'; // إخفاء الصور عند التحميل
 
                 const imageElement = document.createElement('img');
                 imageElement.src = slide.image;  // الرابط إلى صورة الأنمي
@@ -68,11 +76,41 @@
 
                 slideElement.appendChild(imageElement);
                 slideElement.appendChild(textOverlay);  // إضافة النص فوق الصورة
-                slider.appendChild(slideElement);
+                slideshow.appendChild(slideElement);
+            });
+
+            // إظهار الصورة الأولى
+            showSlide(currentSlide);
+
+            // دالة للانتقال إلى الشريحة التالية
+            function showSlide(index) {
+                const slides = document.querySelectorAll('.anime-slide');
+                if (index >= slides.length) {
+                    currentSlide = 0;
+                } else if (index < 0) {
+                    currentSlide = slides.length - 1;
+                }
+                
+                slides.forEach((slide, i) => {
+                    slide.style.display = (i === currentSlide) ? 'block' : 'none';
+                });
+            }
+
+            // زر التالي
+            document.getElementById('nextBtn').addEventListener('click', () => {
+                currentSlide++;
+                showSlide(currentSlide);
+            });
+
+            // زر السابق
+            document.getElementById('prevBtn').addEventListener('click', () => {
+                currentSlide--;
+                showSlide(currentSlide);
             });
         })
         .catch(error => console.error('خطأ في تحميل بيانات الـ slider:', error));
 </script>
+
 
 
   <!-- بدايت مميز حلقات  -->
